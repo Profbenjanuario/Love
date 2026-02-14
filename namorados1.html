@@ -663,7 +663,8 @@
         fraseEl.style.opacity = 1;
       }, 300);
     }
-    setInterval(mudarFrase, 8000);
+    // Muda a frase a cada 4 segundos
+    setInterval(mudarFrase, 4000);
 
     // ========== CHUVA DE AMOR ==========
     function criarChuvaAmor(quantidade = 20) {
@@ -682,6 +683,9 @@
         }, i * 30);
       }
     }
+
+    // Ativa a chuva de amor a cada 3 segundos automaticamente
+    setInterval(() => criarChuvaAmor(15), 3000);
 
     // ========== MAGIA TOTAL ==========
     function magiaTotal() {

@@ -570,7 +570,8 @@
         fraseEl.style.opacity = 1;
       }, 200);
     }
-    setInterval(mudarFrase, 7000);
+    // Muda a frase a cada 4 segundos
+    setInterval(mudarFrase, 4000);
 
     // ========== CHUVA DE AMOR OTIMIZADA ==========
     function criarChuvaAmor(quantidade = 40) {
@@ -590,11 +591,8 @@
       }
     }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('button') && !e.target.closest('.btn-presente')) {
-        criarChuvaAmor(20);
-      }
-    });
+    // Ativa a chuva de amor a cada 3 segundos automaticamente
+    setInterval(() => criarChuvaAmor(15), 3000);
 
     // ========== MAGIA TOTAL LEVE ==========
     function magiaTotal() {
