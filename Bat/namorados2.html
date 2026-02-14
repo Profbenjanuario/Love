@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Maria ❤️ João - Amor Eterno</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #4a00e0, #8e2de2, #ff0080);
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Overlay suave para dar profundidade */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Partículas - versão leve (apenas 30) */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* Container principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Cabeçalho */
+    header {
+      text-align: center;
+      padding: 30px 0 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 10vw, 4.5rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, #fff, #ffff00, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255,0,255,0.5);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .data-inicio {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      color: #ffff00;
+      text-shadow: 0 0 15px #ff00ff;
+      letter-spacing: 1px;
+    }
+
+    /* Foto principal */
+    .foto-principal {
+      width: min(200px, 50vw);
+      height: min(200px, 50vw);
+      border-radius: 50%;
+      margin: 20px auto;
+      object-fit: cover;
+      border: 4px solid #ffff00;
+      box-shadow: 0 0 40px #ff00ff;
+      transition: transform 0.3s;
+      display: block;
+    }
+
+    .foto-principal:active {
+      transform: scale(0.95);
+    }
+
+    /* Contador de tempo */
+    .contador-wrapper {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 25px 15px;
+      margin: 30px 0;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 50px rgba(255,0,255,0.3);
+    }
+
+    .contador-titulo {
+      font-size: 1.5rem;
+      color: #ffff00;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .contador-numeros {
+      display: flex;
+      justify-content: center;
+      gap: clamp(10px, 4vw, 40px);
+      flex-wrap: wrap;
+    }
+
+    .bloco {
+      text-align: center;
+      min-width: 60px;
+    }
+
+    .bloco .numero {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 20px #00ffff;
+    }
+
+    .bloco .legenda {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: #ffff00;
+      letter-spacing: 1px;
+    }
+
+    /* Botão principal */
+    .btn-presente {
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      border: none;
+      color: white;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      font-weight: 900;
+      padding: 20px 40px;
+      border-radius: 80px;
+      cursor: pointer;
+      box-shadow: 0 0 40px #ff00ff;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 30px auto;
+      display: block;
+      width: fit-content;
+      border: 2px solid rgba(255,255,255,0.5);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-presente:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 60px #ffff00;
+    }
+
+    /* Mensagem secreta */
+    .mensagem-secreta {
+      display: none;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 30px 20px;
+      margin: 30px 0;
+      border: 3px solid #ffff00;
+      box-shadow: 0 0 50px #ff00ff;
+    }
+
+    #mensagem-digitada {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      line-height: 1.6;
+      color: #fff;
+      text-shadow: 0 0 20px #ffff00;
+      min-height: 150px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Galeria simplificada */
+    .galeria h2 {
+      font-size: clamp(2rem, 7vw, 3rem);
+      text-align: center;
+      margin: 30px 0 20px;
+      background: linear-gradient(45deg, #ffff00, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .carrossel {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 30px;
+      box-shadow: 0 0 40px #ff00ff;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.4s ease-out;
+    }
+
+    .slides img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .carrossel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,0,255,0.7);
+      color: white;
+      border: none;
+      font-size: 1.8rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 2px solid #ffff00;
+    }
+
+    .carrossel button:active {
+      background: #ffff00;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      border: 3px solid #ffff00;
+      border-radius: 20px;
+    }
+
+    /* História - versão leve */
+    .historia {
+      margin: 40px 0;
+      padding: 30px 20px;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      border: 2px solid #00ffff;
+    }
+
+    .historia h2 {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ffff00;
+    }
+
+    .historia-texto {
+      font-size: clamp(1rem, 3.5vw, 1.4rem);
+      line-height: 1.8;
+    }
+
+    .historia-texto p {
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    /* Frase container */
+    .frase-container {
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      border-radius: 60px;
+      padding: 30px 20px;
+      margin: 30px 0;
+      text-align: center;
+      border: 2px solid #ffff00;
+    }
+
+    #frase-romantica {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 0 15px #ffff00;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+
+    /* Botões mágicos */
+    .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .botao-magico {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 60px;
+      background: linear-gradient(45deg, #ffff00, #ff00ff);
+      color: #000;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 30px #ffff00;
+      transition: transform 0.2s;
+      border: 2px solid white;
+      flex: 1 1 auto;
+      min-width: 150px;
+    }
+
+    .botao-magico:active {
+      transform: scale(0.95);
+    }
+
+    /* Chuva de amor - versão otimizada */
+    .particula-amor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: cair 4s linear forwards;
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 10px gold);
+    }
+
+    @keyframes cair {
+      0% { transform: translateY(-10vh); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+
+    /* Botão música */
+    #music-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      border: 2px solid #ffff00;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      box-shadow: 0 0 30px #ff00ff;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #music-toggle:active {
+      transform: scale(0.9);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #ffff00;
+      font-size: 1.2rem;
+    }
+
+    footer i {
+      color: #ff00ff;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <!-- ÁUDIO CORRIGIDO: sound.mp3 com autoplay -->
+  <audio id="bg-music" loop autoplay preload="auto">
+    <source src="sound.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <button id="music-toggle" onclick="toggleMusic()">
+    <i class="fas fa-music"></i>
+  </button>
+
+  <div class="container">
+    <header>
+      <h1>Maria ❤️ João</h1>
+      <div class="data-inicio">Desde 14 Fev 2023</div>
+      <img src="foto1.jpg" alt="Maria e João" class="foto-principal" onclick="abrirLightbox(this.src)" loading="lazy">
+    </header>
+
+    <div class="contador-wrapper">
+      <div class="contador-titulo">💞 Tempo de Amor 💞</div>
+      <div class="contador-numeros">
+        <div class="bloco"><span class="numero" id="dias">0</span><span class="legenda">Dias</span></div>
+        <div class="bloco"><span class="numero" id="horas">0</span><span class="legenda">Horas</span></div>
+        <div class="bloco"><span class="numero" id="minutos">0</span><span class="legenda">Min</span></div>
+        <div class="bloco"><span class="numero" id="segundos">0</span><span class="legenda">Seg</span></div>
+      </div>
+    </div>
+
+    <button class="btn-presente" onclick="revelarMensagem()">
+      <i class="fas fa-gift"></i> Receba o Teu Presente
+    </button>
+
+    <div class="mensagem-secreta" id="mensagem-secreta">
+      <div id="mensagem-digitada"></div>
+    </div>
+
+    <div class="galeria">
+      <h2>✨ Nossos Momentos ✨</h2>
+      <div class="carrossel">
+        <div class="slides">
+          <img src="foto1.jpg" alt="Momento 1" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto2.jpg" alt="Momento 2" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto3.jpg" alt="Momento 3" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto4.jpg" alt="Momento 4" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto5.jpg" alt="Momento 5" onclick="abrirLightbox(this.src)" loading="lazy">
+        </div>
+        <button class="prev" onclick="mudarSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="mudarSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+      <img id="lightbox-img" src="">
+    </div>
+
+    <div class="historia">
+      <h2>💖 A Nossa História 💖</h2>
+      <div class="historia-texto">
+        <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. Maria e João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
+        <p>Os dias tornaram-se memórias, e as memórias tornaram-se sonhos partilhados. Viajaram juntos, riram, choraram, mas acima de tudo, amaram-se incondicionalmente.</p>
+        <p>Hoje, celebram mais um ano de cumplicidade, com a certeza de que o amor verdadeiro não se mede pelo tempo, mas pela intensidade de cada olhar, de cada abraço, de cada "amo-te".</p>
+      </div>
+    </div>
+
+    <div class="frase-container">
+      <div id="frase-romantica">“O amor é a poesia dos sentidos.”</div>
+    </div>
+
+    <div class="botoes">
+      <button class="botao-magico" onclick="criarChuvaAmor()"><i class="fas fa-heart"></i> Chuva</button>
+      <button class="botao-magico" onclick="mudarFrase()"><i class="fas fa-sync-alt"></i> Frase</button>
+      <button class="botao-magico" onclick="magiaTotal()"><i class="fas fa-wand-magic"></i> Magia</button>
+    </div>
+
+    <footer>
+      <p>Feito com <i class="fas fa-heart"></i> para vocês</p>
+    </footer>
+  </div>
+
+  <script>
+    // ========== CONFIGURAÇÕES OTIMIZADAS ==========
+    const dataInicio = new Date('2023-02-14T00:00:00').getTime();
+    
+    const frases = [
+      "O meu amor por ti é maior que o universo.",
+      "Em cada batida, o teu nome.",
+      "Sonho contigo todas as noites.",
+      "És a razão do meu sorriso.",
+      "Amo-te mais a cada dia.",
+      "Juntos para sempre.",
+      "Obrigado por existires.",
+      "Minha alma gémea.",
+      "Contigo tudo faz sentido.",
+      "Para ti, o meu coração."
+    ];
+
+    const mensagemRomantica = "Meu amor, Maria... Desde o primeiro momento em que te vi, soube que eras a pessoa que iria mudar a minha vida. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo. Prometo amar-te hoje, amanhã e para sempre. Eu amo-te! 💖";
+
+    // ========== CONTADOR ==========
+    function atualizarContador() {
+      const agora = new Date().getTime();
+      const diff = agora - dataInicio;
+      
+      document.getElementById('dias').innerText = Math.floor(diff / 86400000);
+      document.getElementById('horas').innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+      document.getElementById('minutos').innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+      document.getElementById('segundos').innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    // ========== BOTÃO PRINCIPAL ==========
+    function revelarMensagem() {
+      criarChuvaAmor(30);
+      
+      const msgDiv = document.getElementById('mensagem-secreta');
+      msgDiv.style.display = 'block';
+      msgDiv.scrollIntoView({ behavior: 'smooth' });
+      
+      const el = document.getElementById('mensagem-digitada');
+      el.innerHTML = '';
+      let i = 0;
+      
+      function digitar() {
+        if (i < mensagemRomantica.length) {
+          el.innerHTML += mensagemRomantica.charAt(i);
+          i++;
+          setTimeout(digitar, 30);
+        }
+      }
+      digitar();
+    }
+
+    // ========== CARROSSEL ==========
+    let slideIndex = 0;
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slides img').length;
+
+    function mudarSlide(direcao) {
+      slideIndex += direcao;
+      if (slideIndex < 0) slideIndex = totalSlides - 1;
+      if (slideIndex >= totalSlides) slideIndex = 0;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    let autoPlay = setInterval(() => mudarSlide(1), 6000);
+
+    // ========== LIGHTBOX ==========
+    function abrirLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function fecharLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fecharLightbox();
+    });
+
+    // ========== FRASE ROMÂNTICA ==========
+    const fraseEl = document.getElementById('frase-romantica');
+
+    function mudarFrase() {
+      fraseEl.style.opacity = 0;
+      setTimeout(() => {
+        const idx = Math.floor(Math.random() * frases.length);
+        fraseEl.innerText = `“${frases[idx]}”`;
+        fraseEl.style.opacity = 1;
+      }, 200);
+    }
+    // Muda a frase a cada 4 segundos
+    setInterval(mudarFrase, 4000);
+
+    // ========== CHUVA DE AMOR OTIMIZADA ==========
+    function criarChuvaAmor(quantidade = 40) {
+      const emojis = ['❤️', '💖', '🌹', '🌸', '✨', '⭐'];
+      for (let i = 0; i < quantidade; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'particula-amor';
+          el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+          el.style.left = Math.random() * 100 + '%';
+          el.style.top = '-10%';
+          el.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+          el.style.animationDuration = (Math.random() * 2 + 3) + 's';
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 4000);
+        }, i * 20);
+      }
+    }
+
+    // Ativa a chuva de amor a cada 3 segundos automaticamente
+    setInterval(() => criarChuvaAmor(15), 3000);
+
+    // ========== MAGIA TOTAL LEVE ==========
+    function magiaTotal() {
+      criarChuvaAmor(50);
+      mudarFrase();
+    }
+
+    // ========== MÚSICA CORRIGIDA ==========
+    const music = document.getElementById('bg-music');
+    let musicaAtiva = true;
+
+    function toggleMusic() {
+      if (musicaAtiva) {
+        music.pause();
+        musicaAtiva = false;
+      } else {
+        music.play()
+          .then(() => {
+            musicaAtiva = true;
+          })
+          .catch(error => {
+            console.log("Erro ao reproduzir:", error);
+          });
+      }
+      atualizarIconeMusica();
+    }
+
+    function atualizarIconeMusica() {
+      const icon = document.querySelector('#music-toggle i');
+      if (icon) {
+        icon.className = musicaAtiva ? 'fas fa-pause' : 'fas fa-music';
+      }
+    }
+
+    window.addEventListener('load', function() {
+      music.play()
+        .then(() => {
+          console.log("✅ Música tocando automaticamente!");
+          musicaAtiva = true;
+          atualizarIconeMusica();
+        })
+        .catch(error => {
+          console.log("❌ Autoplay bloqueado:", error);
+          musicaAtiva = false;
+          atualizarIconeMusica();
+          
+          document.body.addEventListener('click', function ativarNoClique() {
+            music.play()
+              .then(() => {
+                musicaAtiva = true;
+                atualizarIconeMusica();
+              })
+              .catch(e => console.log("Erro no clique:", e));
+          }, { once: true });
+        });
+    });
+
+    music.addEventListener('canplaythrough', () => {
+      console.log("✅ Áudio sound.mp3 carregado!");
+    });
+
+    music.addEventListener('error', (e) => {
+      console.error("❌ Erro ao carregar sound.mp3:", e);
+    });
+
+    // ========== PARTÍCULAS LEVES ==========
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 30; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 0.2,
+          speedY: (Math.random() - 0.5) * 0.2,
+          color: `rgba(255, ${150 + Math.random()*100}, 255, 0.6)`
+        });
+      }
+    }
+    initParticles();
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > width) p.speedX *= -1;
+        if (p.y < 0 || p.y > height) p.speedY *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
+    });
+  </script>
+</body>
+</html>
