@@ -485,9 +485,10 @@
 <body>
   <div class="stars"></div>
 
-  <audio id="bg-music" loop preload="none">
-    <source src="love.mp3" type="audio/mpeg">
-    <source src="sound.mp4" type="audio/mp4">
+  <!-- ÁUDIO COM AUTOPLAY -->
+  <audio id="bg-music" loop autoplay preload="auto">
+    <source src="sound.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
   </audio>
 
   <button id="music-toggle" onclick="toggleMusic()">
@@ -566,7 +567,7 @@
   </div>
 
   <script>
-    // ========== CONFIGURAÇÕES SUAVES ==========
+    // ========== CONFIGURAÇÕES ==========
     const dataInicio = new Date('2023-02-14T00:00:00').getTime();
     
     const frases = [
@@ -688,31 +689,68 @@
       mudarFrase();
     }
 
-    // ========== MÚSICA ==========
+    // ========== MÚSICA COM AUTOPLAY ==========
     const music = document.getElementById('bg-music');
-    let musicaAtiva = false;
+    let musicaAtiva = true; // Começa como true porque vamos tentar tocar automaticamente
 
     function toggleMusic() {
       if (musicaAtiva) {
         music.pause();
+        musicaAtiva = false;
       } else {
-        music.play().catch(() => {
-          console.log('Clique na página para ativar a música');
-        });
+        music.play()
+          .then(() => {
+            musicaAtiva = true;
+          })
+          .catch(error => {
+            console.log("Erro ao reproduzir:", error);
+          });
       }
-      musicaAtiva = !musicaAtiva;
-      const icon = document.querySelector('#music-toggle i');
-      icon.className = musicaAtiva ? 'fas fa-pause' : 'fas fa-music';
+      atualizarIconeMusica();
     }
 
-    // Primeiro clique na página ativa a música
-    document.body.addEventListener('click', function initMusic() {
-      if (!musicaAtiva) {
-        music.play().catch(() => {});
-        musicaAtiva = true;
-        document.querySelector('#music-toggle i').className = 'fas fa-pause';
+    function atualizarIconeMusica() {
+      const icon = document.querySelector('#music-toggle i');
+      if (icon) {
+        icon.className = musicaAtiva ? 'fas fa-pause' : 'fas fa-music';
       }
-    }, { once: true });
+    }
+
+    // Tentar tocar automaticamente quando a página carregar
+    window.addEventListener('load', function() {
+      music.play()
+        .then(() => {
+          console.log("✅ Música tocando automaticamente!");
+          musicaAtiva = true;
+          atualizarIconeMusica();
+        })
+        .catch(error => {
+          console.log("❌ Autoplay bloqueado pelo navegador:", error);
+          console.log("O utilizador precisa interagir com a página para ativar a música");
+          musicaAtiva = false;
+          atualizarIconeMusica();
+          
+          // Tenta novamente no primeiro clique
+          document.body.addEventListener('click', function ativarNoClique() {
+            music.play()
+              .then(() => {
+                musicaAtiva = true;
+                atualizarIconeMusica();
+              })
+              .catch(e => console.log("Erro no clique:", e));
+          }, { once: true });
+        });
+    });
+
+    // Para debug - verifica se o áudio carregou
+    music.addEventListener('canplaythrough', () => {
+      console.log("✅ Áudio sound.mp3 carregado e pronto!");
+    });
+
+    music.addEventListener('error', (e) => {
+      console.error("❌ Erro ao carregar sound.mp3:", e);
+      console.log("Verifica se o arquivo sound.mp3 está na mesma pasta do HTML");
+    });
   </script>
 </body>
 </html>
