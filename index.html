@@ -126,7 +126,6 @@
       transition: 0.5s;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
       animation: cardFloat 6s infinite;
     }
 
@@ -236,6 +235,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      border: 2px solid transparent;
     }
 
     .btn-preview {
@@ -247,6 +247,7 @@
     .btn-preview:hover {
       transform: scale(1.1);
       box-shadow: 0 0 50px #00ffff;
+      border-color: white;
     }
 
     .btn-whatsapp {
@@ -258,6 +259,7 @@
     .btn-whatsapp:hover {
       transform: scale(1.1);
       box-shadow: 0 0 50px #25D366;
+      border-color: white;
     }
 
     /* Seção de instruções */
@@ -357,6 +359,11 @@
       font-size: 1.2rem;
     }
 
+    /* Links de pré-visualização diretos (invisíveis) */
+    .preview-link {
+      display: none;
+    }
+
     /* Responsividade */
     @media (max-width: 768px) {
       .modelos-grid {
@@ -379,6 +386,13 @@
 
   <div class="fundo-animado"></div>
   <canvas id="particles"></canvas>
+
+  <!-- Links de pré-visualização (escondidos) -->
+  <div class="preview-link">
+    <a href="namorados1.html" target="_blank" id="preview1">Preview 1</a>
+    <a href="namorados2.html" target="_blank" id="preview2">Preview 2</a>
+    <a href="namorados3.html" target="_blank" id="preview3">Preview 3</a>
+  </div>
 
   <div class="container">
     <header>
@@ -405,7 +419,7 @@
           <span class="tag">⏳ Contador</span>
         </div>
         <div class="botoes-card">
-          <button class="btn btn-preview" onclick="abrirPreview('namorados1.html')">
+          <button class="btn btn-preview" onclick="abrirPreview(1)">
             <i class="fas fa-eye"></i> Pré-visualizar
           </button>
           <button class="btn btn-whatsapp" onclick="selecionarModelo(1)">
@@ -428,7 +442,7 @@
           <span class="tag">🔥 Botões pulsantes</span>
         </div>
         <div class="botoes-card">
-          <button class="btn btn-preview" onclick="abrirPreview('namorados2.html')">
+          <button class="btn btn-preview" onclick="abrirPreview(2)">
             <i class="fas fa-eye"></i> Pré-visualizar
           </button>
           <button class="btn btn-whatsapp" onclick="selecionarModelo(2)">
@@ -451,7 +465,7 @@
           <span class="tag">🎵 Música ambiente</span>
         </div>
         <div class="botoes-card">
-          <button class="btn btn-preview" onclick="abrirPreview('namorados3.html')">
+          <button class="btn btn-preview" onclick="abrirPreview(3)">
             <i class="fas fa-eye"></i> Pré-visualizar
           </button>
           <button class="btn btn-whatsapp" onclick="selecionarModelo(3)">
@@ -564,10 +578,35 @@
       3: 'Magia Total'
     };
 
-    // ========== FUNÇÕES ==========
-    function abrirPreview(arquivo) {
-      // Abre o modelo numa nova aba
-      window.open(arquivo, '_blank');
+    // ========== FUNÇÃO CORRIGIDA PARA PRÉ-VISUALIZAÇÃO ==========
+    function abrirPreview(modelo) {
+      // Usa os links escondidos para garantir a abertura
+      const links = {
+        1: document.getElementById('preview1'),
+        2: document.getElementById('preview2'),
+        3: document.getElementById('preview3')
+      };
+      
+      // Simula um clique no link
+      const link = links[modelo];
+      if (link) {
+        link.click();
+      } else {
+        // Fallback: abre diretamente
+        const arquivos = {
+          1: 'namorados1.html',
+          2: 'namorados2.html',
+          3: 'namorados3.html'
+        };
+        window.open(arquivos[modelo], '_blank');
+      }
+      
+      // Feedback visual
+      const botoes = document.querySelectorAll('.btn-preview');
+      botoes[modelo-1].style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        botoes[modelo-1].style.transform = '';
+      }, 200);
     }
 
     function selecionarModelo(modelo) {
@@ -585,7 +624,6 @@
       const mensagem = encodeURIComponent(`Olá! Gostei do modelo ${modeloAtual} - ${nomesModelos[modeloAtual]} e quero encomendar um presente personalizado.`);
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
       
-      // Fecha o modal após 1 segundo
       setTimeout(() => {
         fecharModal();
       }, 1000);
