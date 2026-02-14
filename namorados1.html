@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maria ❤️ João - Amor Eterno</title>
+  <title>Maria ❤️ João - O nosso amor</title>
   <style>
     * {
       margin: 0;
@@ -12,293 +12,402 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #ff0080, #8000ff, #00ccff, #ff00aa);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      font-family: 'Dancing Script', 'Poppins', cursive, sans-serif;
+      background: #0a0a1a;
       color: #fff;
       overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Partículas brilhantes */
-    #particles {
+    /* Fundo suave com estrelas */
+    .stars {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1;
-      pointer-events: none;
+      background: radial-gradient(circle at 30% 50%, #1a1a3a, #0a0a1a);
+      z-index: -2;
     }
 
-    /* Estrelas cadentes coloridas */
-    .shooting-star {
-      position: fixed;
-      top: -10px;
-      left: 100%;
-      width: 200px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #ffff00, #ff00ff, #00ffff);
-      transform: rotate(45deg);
-      animation: shoot 4s linear infinite;
-      z-index: 9995;
-      opacity: 0;
-      box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff;
+    .stars::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 80px 110px, #ff69b4, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 150px 250px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 250px 400px, #ffd700, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 300px 300px;
+      opacity: 0.5;
+      animation: twinkle 5s infinite alternate;
     }
 
-    @keyframes shoot {
-      0% { left: 100%; top: -10%; opacity: 1; }
-      100% { left: -10%; top: 110%; opacity: 0; }
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.8; }
     }
 
     /* Container principal */
     .container {
-      max-width: 1300px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 30px 20px;
+      padding: 20px;
       position: relative;
       z-index: 10;
-      backdrop-filter: blur(5px);
     }
 
-    /* Cabeçalho */
+    /* Header com efeito de vidro */
     header {
       text-align: center;
-      padding: 50px 0 30px;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 40px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     h1 {
-      font-size: 5rem;
-      font-weight: 900;
-      background: linear-gradient(45deg, #ffff00, #ff00ff, #00ffff, #ffaa00);
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
+      background: linear-gradient(135deg, #ffd700, #ff69b4, #00ffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 40px #ff00ff, 0 0 80px #00ffff;
-      animation: glowPulse 2s infinite alternate;
-      margin-bottom: 15px;
-      letter-spacing: 3px;
-    }
-
-    @keyframes glowPulse {
-      from { text-shadow: 0 0 40px #ff00ff, 0 0 80px #00ffff; }
-      to { text-shadow: 0 0 80px #ffff00, 0 0 120px #ff00ff; }
-    }
-
-    .data-inicio {
-      font-size: 1.6rem;
-      color: #ffff00;
-      text-shadow: 0 0 20px #ff00ff;
-      animation: float 4s ease-in-out infinite;
+      margin-bottom: 10px;
       letter-spacing: 2px;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
+    .data-inicio {
+      font-size: 1.3rem;
+      color: #ffd700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.9;
     }
 
-    /* Foto principal */
-    .foto-principal {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
+    /* Foto principal com efeito suave */
+    .foto-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
       margin: 30px auto;
+    }
+
+    .foto-principal {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
       object-fit: cover;
-      border: 6px solid #ffff00;
-      box-shadow: 0 0 60px #ff00ff, 0 0 120px #00ffff;
-      animation: rotatePhoto 10s infinite linear;
-      transition: transform 0.5s;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
+      transition: transform 0.3s ease;
     }
 
     .foto-principal:hover {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(1.02);
     }
 
-    @keyframes rotatePhoto {
-      0% { box-shadow: 0 0 60px #ff00ff; }
-      33% { box-shadow: 0 0 120px #00ffff; }
-      66% { box-shadow: 0 0 60px #ffff00; }
-      100% { box-shadow: 0 0 60px #ff00ff; }
+    .coracao-flutuante {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatHeart 3s infinite;
+      filter: drop-shadow(0 0 15px #ff69b4);
     }
 
-    /* Contador de tempo */
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
+    /* Contador minimalista */
     .contador-wrapper {
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(15px);
-      border-radius: 100px;
-      padding: 40px;
-      margin: 50px 0;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 100px #ff00ff, inset 0 0 50px #00ffff;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 30px 20px;
+      margin: 40px 0;
+      border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
     .contador-titulo {
-      font-size: 2.2rem;
-      color: #ffff00;
-      margin-bottom: 30px;
-      text-shadow: 0 0 30px #ff00ff;
+      font-size: 1.5rem;
+      color: #ffd700;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 300;
+      letter-spacing: 2px;
     }
 
     .contador-numeros {
       display: flex;
       justify-content: center;
-      gap: 60px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
     .bloco {
       text-align: center;
+      min-width: 70px;
     }
 
     .bloco .numero {
-      font-size: 5rem;
-      font-weight: 900;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 300;
       line-height: 1;
-      color: #00ffff;
-      text-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff;
+      color: #fff;
+      text-shadow: 0 0 20px #ff69b4;
+      font-family: 'Poppins', sans-serif;
     }
 
     .bloco .legenda {
-      font-size: 1.4rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      color: #ffff00;
-      letter-spacing: 3px;
-      text-shadow: 0 0 20px #ff00ff;
+      color: #ffd700;
+      letter-spacing: 2px;
+      opacity: 0.8;
     }
 
-    /* Botão principal - Receba o Teu Presente */
+    /* Botão principal elegante */
     .btn-presente {
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
-      background-size: 200% 200%;
-      animation: gradientMove 3s ease infinite;
+      background: linear-gradient(135deg, #ff69b4, #ffd700);
       border: none;
-      color: white;
-      font-size: 2.8rem;
-      font-weight: 900;
-      padding: 30px 80px;
-      border-radius: 120px;
+      color: #0a0a1a;
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding: 20px 40px;
+      border-radius: 60px;
       cursor: pointer;
-      box-shadow: 0 0 80px #ff00ff, 0 0 160px #00ffff;
-      transition: 0.5s;
-      margin: 60px 0;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      border: 3px solid rgba(255,255,255,0.5);
-    }
-
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      margin: 40px auto;
+      display: block;
+      width: fit-content;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 10px 30px rgba(255,105,180,0.3);
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
     }
 
     .btn-presente:hover {
-      transform: scale(1.2) rotate(3deg);
-      box-shadow: 0 0 120px #ffff00, 0 0 200px #ff00ff;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255,215,0,0.4);
     }
 
-    /* Área da mensagem secreta */
+    .btn-presente:active {
+      transform: translateY(0);
+    }
+
+    /* Mensagem secreta com fade suave */
     .mensagem-secreta {
       display: none;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(20px);
-      border-radius: 80px;
-      padding: 50px;
-      margin: 50px 0;
-      border: 3px solid #ffff00;
-      box-shadow: 0 0 100px #ff00ff;
-      animation: aparecer 1.5s ease-out;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 40px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 1px solid rgba(255,215,0,0.3);
+      animation: fadeInUp 0.8s ease;
     }
 
-    @keyframes aparecer {
-      0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
-      100% { opacity: 1; transform: scale(1) rotate(0); }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     #mensagem-digitada {
-      font-size: 2.5rem;
-      line-height: 1.6;
-      color: #ffffff;
-      text-shadow: 0 0 30px #ffff00, 0 0 60px #ff00ff;
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 1.6rem;
+      line-height: 1.8;
+      color: #fff;
+      text-shadow: 0 0 20px #ffd700;
+      font-family: 'Dancing Script', cursive;
       text-align: center;
-      font-weight: 600;
+      white-space: pre-wrap;
     }
 
-    /* Galeria */
+    /* Galeria com carrossel suave */
     .galeria {
-      margin: 80px 0;
-      text-align: center;
+      margin: 60px 0;
     }
 
     .galeria h2 {
-      font-size: 4rem;
-      margin-bottom: 40px;
-      background: linear-gradient(45deg, #ffff00, #ff00ff, #00ffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 60px #ff00ff;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: 'Dancing Script', cursive;
+      color: #ffd700;
+      font-weight: 400;
     }
 
     .carrossel {
       position: relative;
-      max-width: 1000px;
+      max-width: 500px;
       margin: 0 auto;
+      border-radius: 30px;
       overflow: hidden;
-      border-radius: 50px;
-      box-shadow: 0 0 100px #ff00ff, 0 0 200px #00ffff;
-      border: 3px solid #ffff00;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
 
     .slides {
       display: flex;
-      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      transition: transform 0.5s ease;
     }
 
     .slides img {
       width: 100%;
-      height: 600px;
+      height: 400px;
       object-fit: cover;
       flex-shrink: 0;
       cursor: pointer;
+      transition: filter 0.3s;
+    }
+
+    .slides img:hover {
+      filter: brightness(1.1);
     }
 
     .carrossel button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.3);
       color: white;
-      border: none;
-      font-size: 3rem;
-      padding: 15px 30px;
-      cursor: pointer;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      transition: 0.3s;
-      z-index: 20;
-      border: 2px solid #ffff00;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s;
     }
 
     .carrossel button:hover {
-      background: linear-gradient(45deg, #ffff00, #ff00ff);
-      transform: translateY(-50%) scale(1.2);
-      box-shadow: 0 0 60px #ffff00;
+      background: rgba(255,105,180,0.5);
+      transform: translateY(-50%) scale(1.1);
     }
 
-    .prev { left: 20px; }
-    .next { right: 20px; }
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    /* História em cards */
+    .historia {
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 40px;
+      border-left: 3px solid #ff69b4;
+      border-right: 3px solid #ffd700;
+    }
+
+    .historia h2 {
+      font-size: 2.5rem;
+      font-family: 'Dancing Script', cursive;
+      color: #ffd700;
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .historia p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      opacity: 0.9;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+    }
+
+    /* Frase do dia */
+    .frase-container {
+      background: linear-gradient(135deg, rgba(255,105,180,0.1), rgba(255,215,0,0.1));
+      border-radius: 40px;
+      padding: 40px;
+      margin: 40px 0;
+      text-align: center;
+      border: 1px solid rgba(255,215,0,0.3);
+    }
+
+    #frase-romantica {
+      font-size: 1.8rem;
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 0 15px #ff69b4;
+      font-family: 'Dancing Script', cursive;
+      line-height: 1.6;
+      transition: opacity 0.5s;
+    }
+
+    /* Botões mágicos sutis */
+    .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 40px 0;
+    }
+
+    .botao-magico {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,215,0,0.3);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .botao-magico:hover {
+      background: rgba(255,105,180,0.2);
+      border-color: #ff69b4;
+      transform: translateY(-2px);
+    }
+
+    /* Botão música */
+    #music-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,215,0,0.3);
+      color: #ffd700;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    #music-toggle:hover {
+      background: rgba(255,105,180,0.3);
+      transform: scale(1.1);
+      color: #fff;
+    }
 
     /* Lightbox */
     .lightbox {
@@ -308,189 +417,77 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
       z-index: 10000;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
     }
 
     .lightbox img {
       max-width: 90%;
       max-height: 90%;
-      border: 5px solid #ffff00;
-      box-shadow: 0 0 200px #ff00ff;
-      border-radius: 30px;
+      border-radius: 20px;
+      border: 2px solid #ffd700;
     }
 
-    /* História */
-    .historia {
-      margin: 80px 0;
-      padding: 50px;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(15px);
-      border-radius: 100px;
-      border: 3px solid #00ffff;
-      box-shadow: 0 0 100px #00ffff;
-    }
-
-    .historia h2 {
-      font-size: 4rem;
-      margin-bottom: 40px;
-      color: #ffff00;
-      text-shadow: 0 0 40px #ff00ff;
-    }
-
-    .historia-texto {
-      font-size: 1.8rem;
-      line-height: 2;
-      color: #fff;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .historia-texto p {
-      margin-bottom: 30px;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s ease;
-      text-shadow: 0 0 20px #00ffff;
-    }
-
-    .historia-texto p.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Frase romântica */
-    .frase-container {
-      background: linear-gradient(45deg, #ff00ff, #00ffff);
-      border-radius: 120px;
-      padding: 40px;
-      margin: 60px 0;
-      text-align: center;
-      border: 3px solid #ffff00;
-      box-shadow: 0 0 100px #ffff00;
-    }
-
-    #frase-romantica {
-      font-size: 2.8rem;
-      font-style: italic;
-      color: #ffffff;
-      text-shadow: 0 0 40px #ffff00;
-      min-height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 1s;
-    }
-
-    /* Botões interativos */
-    .botoes {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin: 60px 0;
-    }
-
-    .botao-magico {
-      padding: 20px 50px;
-      border: none;
-      border-radius: 80px;
-      background: linear-gradient(45deg, #ffff00, #ff00ff);
-      color: #000;
-      font-size: 1.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 60px #ffff00;
-      transition: 0.4s;
-      border: 2px solid white;
-    }
-
-    .botao-magico:hover {
-      transform: scale(1.2) rotate(5deg);
-      box-shadow: 0 0 100px #ff00ff;
-      color: white;
-    }
-
-    /* Chuva de amor */
+    /* Chuva de amor suave */
     .particula-amor {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      animation: cair 5s linear forwards;
-      font-size: 3rem;
-      filter: drop-shadow(0 0 30px #ffff00);
+      animation: cair 4s linear forwards;
+      font-size: 1.5rem;
+      opacity: 0.6;
     }
 
     @keyframes cair {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(1080deg); opacity: 0; }
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
 
-    /* Botão música */
-    #music-toggle {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff00ff, #00ffff);
-      border: 3px solid #ffff00;
-      color: white;
-      font-size: 2.5rem;
-      cursor: pointer;
-      box-shadow: 0 0 80px #ff00ff;
-      z-index: 1000;
-      transition: 0.4s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #music-toggle:hover {
-      transform: scale(1.3) rotate(360deg);
-      box-shadow: 0 0 150px #ffff00;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
-      padding: 50px 0;
-      color: #ffff00;
-      font-size: 1.6rem;
-      text-shadow: 0 0 30px #ff00ff;
+      padding: 40px 0;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+      font-family: 'Poppins', sans-serif;
     }
 
     footer i {
-      color: #ff00ff;
-      animation: heartbeat 1s infinite;
+      color: #ff69b4;
     }
 
-    @keyframes heartbeat {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 3rem; }
-      .btn-presente { font-size: 1.8rem; padding: 20px 40px; }
-      #frase-romantica { font-size: 2rem; }
-      .slides img { height: 300px; }
+    @media (max-width: 600px) {
+      .btn-presente {
+        font-size: 1.4rem;
+        padding: 15px 30px;
+      }
+      
+      #mensagem-digitada {
+        font-size: 1.3rem;
+      }
+      
+      .slides img {
+        height: 300px;
+      }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+  <div class="stars"></div>
 
-  <canvas id="particles"></canvas>
-
-  <audio id="bg-music" loop>
-    <source src="sound.mp3" type="audio/mp3">
+  <audio id="bg-music" loop preload="none">
+    <source src="love.mp3" type="audio/mpeg">
+    <source src="sound.mp4" type="audio/mp4">
   </audio>
 
   <button id="music-toggle" onclick="toggleMusic()">
@@ -499,13 +496,18 @@
 
   <div class="container">
     <header>
-      <h1>Maria ❤️ João</h1>
-      <div class="data-inicio">Desde 14 de Fevereiro de 2023</div>
-      <img src="foto1.jpg" alt="Maria e João" class="foto-principal" onclick="abrirLightbox(this.src)">
+      <h1>Maria & João</h1>
+      <div class="data-inicio">14.02.2023</div>
+      
+      <div class="foto-container">
+        <div class="coracao-flutuante" style="top: -30px; right: -20px;">💖</div>
+        <div class="coracao-flutuante" style="bottom: -30px; left: -20px; animation-delay: 1s;">💫</div>
+        <img src="foto1.jpg" alt="Maria e João" class="foto-principal" onclick="abrirLightbox(this.src)" loading="lazy">
+      </div>
     </header>
 
     <div class="contador-wrapper">
-      <div class="contador-titulo">💞 Tempo de Amor 💞</div>
+      <div class="contador-titulo">❤️ JUNTOS HÁ ❤️</div>
       <div class="contador-numeros">
         <div class="bloco"><span class="numero" id="dias">0</span><span class="legenda">Dias</span></div>
         <div class="bloco"><span class="numero" id="horas">0</span><span class="legenda">Horas</span></div>
@@ -514,12 +516,10 @@
       </div>
     </div>
 
-    <!-- BOTÃO PRINCIPAL -->
     <button class="btn-presente" onclick="revelarMensagem()">
-      <i class="fas fa-gift"></i> Receba o Teu Presente
+      <i class="fas fa-gift"></i> ABRIR PRESENTE
     </button>
 
-    <!-- MENSAGEM SECRETA (aparece após clique) -->
     <div class="mensagem-secreta" id="mensagem-secreta">
       <div id="mensagem-digitada"></div>
     </div>
@@ -528,11 +528,11 @@
       <h2>✨ Nossos Momentos ✨</h2>
       <div class="carrossel">
         <div class="slides">
-          <img src="foto1.jpg" alt="Momento 1" onclick="abrirLightbox(this.src)">
-          <img src="foto2.jpg" alt="Momento 2" onclick="abrirLightbox(this.src)">
-          <img src="foto3.jpg" alt="Momento 3" onclick="abrirLightbox(this.src)">
-          <img src="foto4.jpg" alt="Momento 4" onclick="abrirLightbox(this.src)">
-          <img src="foto5.jpg" alt="Momento 5" onclick="abrirLightbox(this.src)">
+          <img src="foto1.jpg" alt="Momento 1" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto2.jpg" alt="Momento 2" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto3.jpg" alt="Momento 3" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto4.jpg" alt="Momento 4" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto5.jpg" alt="Momento 5" onclick="abrirLightbox(this.src)" loading="lazy">
         </div>
         <button class="prev" onclick="mudarSlide(-1)"><i class="fas fa-chevron-left"></i></button>
         <button class="next" onclick="mudarSlide(1)"><i class="fas fa-chevron-right"></i></button>
@@ -544,13 +544,10 @@
     </div>
 
     <div class="historia">
-      <h2>💖 A Nossa História 💖</h2>
-      <div class="historia-texto" id="historia-texto">
-        <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. Maria e João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
-        <p>Os dias tornaram-se memórias, e as memórias tornaram-se sonhos partilhados. Viajaram juntos, riram, choraram, mas acima de tudo, amaram-se incondicionalmente.</p>
-        <p>Hoje, celebram mais um ano de cumplicidade, com a certeza de que o amor verdadeiro não se mede pelo tempo, mas pela intensidade de cada olhar, de cada abraço, de cada "amo-te".</p>
-        <p>Esta página é uma pequena homenagem a essa história que ainda está a ser escrita... com muito amor e magia. 💫</p>
-      </div>
+      <h2>💖 A nossa história</h2>
+      <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. Maria e João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
+      <p>Os dias tornaram-se memórias, e as memórias tornaram-se sonhos partilhados. Viajaram juntos, riram, choraram, mas acima de tudo, amaram-se incondicionalmente.</p>
+      <p>Hoje, celebram mais um ano de cumplicidade, com a certeza de que o amor verdadeiro não se mede pelo tempo, mas pela intensidade de cada olhar, de cada abraço, de cada "amo-te".</p>
     </div>
 
     <div class="frase-container">
@@ -560,18 +557,16 @@
     <div class="botoes">
       <button class="botao-magico" onclick="criarChuvaAmor()"><i class="fas fa-heart"></i> Chuva de Amor</button>
       <button class="botao-magico" onclick="mudarFrase()"><i class="fas fa-sync-alt"></i> Nova Frase</button>
-      <button class="botao-magico" onclick="magiaTotal()"><i class="fas fa-wand-magic"></i> Magia Total</button>
+      <button class="botao-magico" onclick="magiaTotal()"><i class="fas fa-wand-magic"></i> Magia</button>
     </div>
 
     <footer>
-      <p>Feito com <i class="fas fa-heart"></i> para celebrar o vosso amor eterno</p>
+      <p>Feito com <i class="fas fa-heart"></i> para a Maria</p>
     </footer>
   </div>
 
   <script>
-    // ============================================
-    // CONFIGURAÇÕES
-    // ============================================
+    // ========== CONFIGURAÇÕES SUAVES ==========
     const dataInicio = new Date('2023-02-14T00:00:00').getTime();
     
     const frases = [
@@ -579,56 +574,48 @@
       "Em cada batida, o teu nome.",
       "Sonho contigo todas as noites.",
       "És a razão do meu sorriso.",
-      "Amo-te mais a cada dia que passa.",
+      "Amo-te mais a cada dia.",
       "Juntos para sempre.",
       "Obrigado por existires.",
       "Minha alma gémea.",
       "Contigo tudo faz sentido.",
-      "Para ti, o meu coração.",
-      "Se pudesse, escolhia-te todas as vidas.",
-      "És o meu lugar favorito.",
-      "Nos teus olhos encontro o meu lar.",
-      "Cada momento contigo é eterno."
+      "És o meu lugar favorito."
     ];
 
-    const mensagemRomantica = "Meu amor, Maria... Desde o primeiro momento em que te vi, soube que eras a pessoa que iria mudar a minha vida para sempre. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo, cada abraço teu é o meu porto seguro. És a minha melhor amiga, minha confidente, meu amor, minha vida. Prometo amar-te hoje, amanhã e para toda a eternidade. Obrigado por existires e por fazeres de mim a pessoa mais feliz do mundo. Eu amo-te mais do que as palavras podem expressar. Para sempre teu, João 💖";
+    const mensagemRomantica = "Meu amor Maria,\n\nDesde o primeiro momento em que te vi, soube que eras especial. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo, cada abraço teu é o meu porto seguro.\n\nÉs a minha melhor amiga, minha confidente, meu amor, minha vida. Prometo amar-te hoje, amanhã e para sempre.\n\nCom todo o meu coração,\nJoão 💖";
 
-    // ============================================
-    // CONTADOR
-    // ============================================
+    // ========== CONTADOR ==========
     function atualizarContador() {
       const agora = new Date().getTime();
       const diff = agora - dataInicio;
       
-      document.getElementById('dias').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-      document.getElementById('horas').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-      document.getElementById('minutos').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-      document.getElementById('segundos').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+      document.getElementById('dias').innerText = Math.floor(diff / 86400000);
+      document.getElementById('horas').innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+      document.getElementById('minutos').innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+      document.getElementById('segundos').innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
     }
     setInterval(atualizarContador, 1000);
+    atualizarContador();
 
-    // ============================================
-    // BOTÃO PRINCIPAL - REVELAR MENSAGEM
-    // ============================================
+    // ========== BOTÃO PRINCIPAL ==========
     function revelarMensagem() {
-      // Criar explosão
-      criarChuvaAmor();
+      criarChuvaAmor(30);
       
-      // Mostrar área da mensagem
       const msgDiv = document.getElementById('mensagem-secreta');
       msgDiv.style.display = 'block';
-      
-      // Rolar até a mensagem
       msgDiv.scrollIntoView({ behavior: 'smooth' });
       
-      // Efeito de digitação
       const el = document.getElementById('mensagem-digitada');
       el.innerHTML = '';
       let i = 0;
       
       function digitar() {
         if (i < mensagemRomantica.length) {
-          el.innerHTML += mensagemRomantica.charAt(i);
+          if (mensagemRomantica.charAt(i) === '\n') {
+            el.innerHTML += '<br>';
+          } else {
+            el.innerHTML += mensagemRomantica.charAt(i);
+          }
           i++;
           setTimeout(digitar, 50);
         }
@@ -636,9 +623,7 @@
       digitar();
     }
 
-    // ============================================
-    // CARROSSEL
-    // ============================================
+    // ========== CARROSSEL ==========
     let slideIndex = 0;
     const slides = document.querySelector('.slides');
     const totalSlides = document.querySelectorAll('.slides img').length;
@@ -649,11 +634,10 @@
       if (slideIndex >= totalSlides) slideIndex = 0;
       slides.style.transform = `translateX(-${slideIndex * 100}%)`;
     }
-    setInterval(() => mudarSlide(1), 5000);
 
-    // ============================================
-    // LIGHTBOX
-    // ============================================
+    setInterval(() => mudarSlide(1), 6000);
+
+    // ========== LIGHTBOX ==========
     function abrirLightbox(src) {
       document.getElementById('lightbox-img').src = src;
       document.getElementById('lightbox').style.display = 'flex';
@@ -667,26 +651,7 @@
       if (e.key === 'Escape') fecharLightbox();
     });
 
-    // ============================================
-    // HISTÓRIA SCROLL
-    // ============================================
-    const paragrafos = document.querySelectorAll('.historia-texto p');
-
-    function verificarVisibilidade() {
-      paragrafos.forEach(p => {
-        const rect = p.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          p.classList.add('visible');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', verificarVisibilidade);
-    window.addEventListener('load', verificarVisibilidade);
-
-    // ============================================
-    // FRASE ROMÂNTICA
-    // ============================================
+    // ========== FRASE ==========
     const fraseEl = document.getElementById('frase-romantica');
 
     function mudarFrase() {
@@ -695,53 +660,35 @@
         const idx = Math.floor(Math.random() * frases.length);
         fraseEl.innerText = `“${frases[idx]}”`;
         fraseEl.style.opacity = 1;
-      }, 500);
+      }, 300);
     }
-    setInterval(mudarFrase, 6000);
+    setInterval(mudarFrase, 8000);
 
-    // ============================================
-    // CHUVA DE AMOR
-    // ============================================
-    function criarChuvaAmor() {
-      const emojis = ['❤️', '💖', '💘', '💕', '🌹', '🌸', '🌼', '🌺', '💐', '✨', '⭐', '💫', '🦋'];
-      for (let i = 0; i < 200; i++) {
+    // ========== CHUVA DE AMOR ==========
+    function criarChuvaAmor(quantidade = 20) {
+      const emojis = ['❤️', '💖', '🌸', '✨', '⭐', '💫'];
+      for (let i = 0; i < quantidade; i++) {
         setTimeout(() => {
           const el = document.createElement('div');
           el.className = 'particula-amor';
           el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
           el.style.left = Math.random() * 100 + '%';
           el.style.top = '-10%';
-          el.style.fontSize = (Math.random() * 3 + 2) + 'rem';
-          el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+          el.style.fontSize = (Math.random() * 1.5 + 1.2) + 'rem';
+          el.style.animationDuration = (Math.random() * 3 + 3) + 's';
           document.body.appendChild(el);
-          setTimeout(() => el.remove(), 5000);
-        }, i * 10);
+          setTimeout(() => el.remove(), 4000);
+        }, i * 30);
       }
     }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.classList.contains('botao-magico') && !e.target.closest('button') && !e.target.closest('.btn-presente')) {
-        criarChuvaAmor();
-      }
-    });
-
-    // ============================================
-    // MAGIA TOTAL
-    // ============================================
+    // ========== MAGIA TOTAL ==========
     function magiaTotal() {
-      criarChuvaAmor();
-      for (let i = 0; i < 8; i++) {
-        setTimeout(mudarFrase, i * 200);
-      }
-      document.querySelector('.contador-wrapper').style.animation = 'glowPulse 0.3s 10 alternate';
-      setTimeout(() => {
-        document.querySelector('.contador-wrapper').style.animation = '';
-      }, 3000);
+      criarChuvaAmor(40);
+      mudarFrase();
     }
 
-    // ============================================
-    // MÚSICA
-    // ============================================
+    // ========== MÚSICA ==========
     const music = document.getElementById('bg-music');
     let musicaAtiva = false;
 
@@ -749,81 +696,23 @@
       if (musicaAtiva) {
         music.pause();
       } else {
-        music.play().catch(e => console.log("Autoplay bloqueado:", e));
+        music.play().catch(() => {
+          console.log('Clique na página para ativar a música');
+        });
       }
       musicaAtiva = !musicaAtiva;
       const icon = document.querySelector('#music-toggle i');
       icon.className = musicaAtiva ? 'fas fa-pause' : 'fas fa-music';
     }
 
-    // ============================================
-    // PARTÍCULAS
-    // ============================================
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    let particles = [];
-
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < 150; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 4 + 1,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
-          color: `rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*100+155)}, ${Math.floor(Math.random()*255)}, 0.8)`
-        });
+    // Primeiro clique na página ativa a música
+    document.body.addEventListener('click', function initMusic() {
+      if (!musicaAtiva) {
+        music.play().catch(() => {});
+        musicaAtiva = true;
+        document.querySelector('#music-toggle i').className = 'fas fa-pause';
       }
-    }
-    initParticles();
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x < 0 || p.x > width) p.speedX *= -1;
-        if (p.y < 0 || p.y > height) p.speedY *= -1;
-      });
-      requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      initParticles();
-    });
-
-    // ============================================
-    // ESTRELAS CADENTES
-    // ============================================
-    setInterval(() => {
-      const star = document.createElement('div');
-      star.className = 'shooting-star';
-      star.style.top = Math.random() * 50 + '%';
-      star.style.left = 100 + '%';
-      star.style.animationDuration = 2 + Math.random() * 3 + 's';
-      star.style.animationDelay = Math.random() * 2 + 's';
-      document.body.appendChild(star);
-      setTimeout(() => star.remove(), 5000);
-    }, 2000);
-
-    // Inicialização
-    window.onload = () => {
-      atualizarContador();
-      mudarFrase();
-    };
+    }, { once: true });
   </script>
 </body>
 </html>
