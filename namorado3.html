@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Maria ❤️ João - Amor Eterno</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a1a;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Fundo animado com partículas e rotação */
+    .fundo-animado {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff0080);
+      background-size: 400% 400%;
+      animation: rotateBG 20s linear infinite, gradientMove 10s ease infinite;
+      z-index: -2;
+    }
+
+    @keyframes rotateBG {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* Camada escura para contraste */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Partículas brilhantes */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Container principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px;
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Cabeçalho com rotação suave */
+    header {
+      text-align: center;
+      padding: 30px 0 20px;
+      animation: floatHeader 6s ease-in-out infinite;
+    }
+
+    @keyframes floatHeader {
+      0% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-10px) rotate(1deg); }
+      66% { transform: translateY(10px) rotate(-1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 10vw, 4.5rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, #fff, #ffff00, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255,0,255,0.7);
+      margin-bottom: 10px;
+      line-height: 1.2;
+      animation: textGlow 2s infinite alternate;
+    }
+
+    @keyframes textGlow {
+      from { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff; }
+      to { text-shadow: 0 0 60px #ffff00, 0 0 90px #ff00ff; }
+    }
+
+    .data-inicio {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      color: #ffff00;
+      text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+      letter-spacing: 2px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.7; transform: scale(1); }
+    }
+
+    /* Foto principal com rotação */
+    .foto-principal {
+      width: min(200px, 50vw);
+      height: min(200px, 50vw);
+      border-radius: 50%;
+      margin: 20px auto;
+      object-fit: cover;
+      border: 5px solid transparent;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: spin 10s linear infinite, glow 2s alternate infinite;
+      display: block;
+      box-shadow: 0 0 50px #ff00ff;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 50px #ff00ff; }
+      to { box-shadow: 0 0 100px #00ffff, 0 0 150px #ffff00; }
+    }
+
+    /* Contador com efeito 3D */
+    .contador-wrapper {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
+      border-radius: 60px;
+      padding: 25px 15px;
+      margin: 30px 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 80px rgba(255,0,255,0.5);
+      animation: shake 5s infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    .contador-titulo {
+      font-size: 1.5rem;
+      color: #ffff00;
+      margin-bottom: 20px;
+      text-align: center;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .contador-numeros {
+      display: flex;
+      justify-content: center;
+      gap: clamp(10px, 4vw, 40px);
+      flex-wrap: wrap;
+    }
+
+    .bloco {
+      text-align: center;
+      min-width: 60px;
+      animation: bounce 2s infinite;
+    }
+
+    .bloco:nth-child(1) { animation-delay: 0s; }
+    .bloco:nth-child(2) { animation-delay: 0.3s; }
+    .bloco:nth-child(3) { animation-delay: 0.6s; }
+    .bloco:nth-child(4) { animation-delay: 0.9s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .bloco .numero {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff;
+    }
+
+    .bloco .legenda {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: #ffff00;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* Botão principal com múltiplas animações */
+    .btn-presente {
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      background-size: 300% 300%;
+      border: none;
+      color: white;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      font-weight: 900;
+      padding: 20px 40px;
+      border-radius: 80px;
+      cursor: pointer;
+      box-shadow: 0 0 60px #ff00ff;
+      margin: 30px auto;
+      display: block;
+      width: fit-content;
+      border: 3px solid rgba(255,255,255,0.8);
+      animation: gradientMove 3s infinite, pulseBtn 1s infinite, rotateBtn 10s infinite;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulseBtn {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 60px #ff00ff; }
+      50% { transform: scale(1.1); box-shadow: 0 0 100px #ffff00; }
+    }
+
+    @keyframes rotateBtn {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+    }
+
+    .btn-presente:active {
+      transform: scale(0.95);
+    }
+
+    /* Mensagem secreta */
+    .mensagem-secreta {
+      display: none;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 40px;
+      padding: 30px 20px;
+      margin: 30px 0;
+      border: 3px solid #ffff00;
+      box-shadow: 0 0 80px #ff00ff;
+      animation: slideIn 0.5s, glowBox 2s infinite;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100px) rotate(-10deg); opacity: 0; }
+      to { transform: translateX(0) rotate(0); opacity: 1; }
+    }
+
+    @keyframes glowBox {
+      0%, 100% { box-shadow: 0 0 80px #ff00ff; }
+      50% { box-shadow: 0 0 150px #00ffff; }
+    }
+
+    #mensagem-digitada {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      line-height: 1.6;
+      color: #fff;
+      text-shadow: 0 0 30px #ffff00;
+      min-height: 150px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Galeria com efeitos */
+    .galeria h2 {
+      font-size: clamp(2rem, 7vw, 3rem);
+      text-align: center;
+      margin: 30px 0 20px;
+      background: linear-gradient(45deg, #ffff00, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textRotate 3s infinite;
+    }
+
+    @keyframes textRotate {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+    }
+
+    .carrossel {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 30px;
+      box-shadow: 0 0 60px #ff00ff;
+      border: 3px solid #ffff00;
+      animation: borderPulse 2s infinite;
+    }
+
+    @keyframes borderPulse {
+      0%, 100% { border-color: #ffff00; box-shadow: 0 0 60px #ff00ff; }
+      50% { border-color: #ff00ff; box-shadow: 0 0 100px #00ffff; }
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    .slides img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .slides img:hover {
+      transform: scale(1.05);
+    }
+
+    .carrossel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      color: white;
+      border: none;
+      font-size: 1.8rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 2px solid #ffff00;
+      animation: buttonBlink 1s infinite;
+      transition: 0.3s;
+    }
+
+    @keyframes buttonBlink {
+      0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+      50% { opacity: 0.7; transform: translateY(-50%) scale(1.1); }
+    }
+
+    .carrossel button:active {
+      transform: translateY(-50%) scale(0.9);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* História */
+    .historia {
+      margin: 40px 0;
+      padding: 30px 20px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      border: 2px solid #00ffff;
+      animation: rotateHistory 10s infinite;
+    }
+
+    @keyframes rotateHistory {
+      0%, 100% { transform: perspective(500px) rotateX(0deg); }
+      50% { transform: perspective(500px) rotateX(2deg); }
+    }
+
+    .historia h2 {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ffff00;
+      text-shadow: 0 0 30px #ff00ff;
+      animation: blink 2s infinite;
+    }
+
+    .historia-texto {
+      font-size: clamp(1rem, 3.5vw, 1.4rem);
+      line-height: 1.8;
+    }
+
+    .historia-texto p {
+      margin-bottom: 20px;
+      transform-origin: left;
+      animation: slideInText 1s;
+    }
+
+    @keyframes slideInText {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Frase container */
+    .frase-container {
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+      background-size: 200% 200%;
+      border-radius: 60px;
+      padding: 30px 20px;
+      margin: 30px 0;
+      text-align: center;
+      border: 3px solid white;
+      animation: gradientMove 5s infinite, rotateFrase 8s infinite;
+    }
+
+    @keyframes rotateFrase {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1deg); }
+      75% { transform: rotate(-1deg); }
+    }
+
+    #frase-romantica {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 0 30px #ffff00;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+
+    /* Botões mágicos com animações */
+    .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .botao-magico {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 60px;
+      background: linear-gradient(45deg, #ffff00, #ff00ff);
+      background-size: 200% 200%;
+      color: #000;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 40px #ffff00;
+      border: 2px solid white;
+      flex: 1 1 auto;
+      min-width: 150px;
+      animation: gradientMove 3s infinite, shakeBtn 4s infinite;
+      transition: 0.3s;
+    }
+
+    @keyframes shakeBtn {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+      20%, 40%, 60%, 80% { transform: translateX(3px); }
+    }
+
+    .botao-magico:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 80px #ff00ff;
+    }
+
+    /* Botão música */
+    #music-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff00ff, #00ffff, #ffff00);
+      background-size: 300% 300%;
+      border: 3px solid white;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 0 50px #ff00ff;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: gradientMove 3s infinite, rotateMusic 5s infinite;
+    }
+
+    @keyframes rotateMusic {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(15deg); }
+    }
+
+    #music-toggle:active {
+      transform: scale(0.9);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #ffff00;
+      font-size: 1.2rem;
+      animation: footerFloat 4s infinite;
+    }
+
+    @keyframes footerFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    footer i {
+      color: #ff00ff;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      border: 5px solid #ffff00;
+      border-radius: 30px;
+      animation: lightboxZoom 0.3s;
+    }
+
+    @keyframes lightboxZoom {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Partículas da chuva */
+    .particula-amor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: cair 4s linear forwards;
+      font-size: 2rem;
+      filter: drop-shadow(0 0 20px gold);
+    }
+
+    @keyframes cair {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <div class="fundo-animado"></div>
+  <div class="overlay"></div>
+  <canvas id="particles"></canvas>
+
+  <audio id="bg-music" loop preload="none">
+    <source src="sound.mp4" type="audio/mp4">
+  </audio>
+
+  <button id="music-toggle" onclick="toggleMusic()">
+    <i class="fas fa-music"></i>
+  </button>
+
+  <div class="container">
+    <header>
+      <h1>Maria ❤️ João</h1>
+      <div class="data-inicio">Desde 14 Fev 2023</div>
+      <img src="foto1.jpg" alt="Maria e João" class="foto-principal" onclick="abrirLightbox(this.src)" loading="lazy">
+    </header>
+
+    <div class="contador-wrapper">
+      <div class="contador-titulo">💞 TEMPO DE AMOR 💞</div>
+      <div class="contador-numeros">
+        <div class="bloco"><span class="numero" id="dias">0</span><span class="legenda">Dias</span></div>
+        <div class="bloco"><span class="numero" id="horas">0</span><span class="legenda">Horas</span></div>
+        <div class="bloco"><span class="numero" id="minutos">0</span><span class="legenda">Min</span></div>
+        <div class="bloco"><span class="numero" id="segundos">0</span><span class="legenda">Seg</span></div>
+      </div>
+    </div>
+
+    <button class="btn-presente" onclick="revelarMensagem()">
+      <i class="fas fa-gift"></i> RECEBE O TEU PRESENTE
+    </button>
+
+    <div class="mensagem-secreta" id="mensagem-secreta">
+      <div id="mensagem-digitada"></div>
+    </div>
+
+    <div class="galeria">
+      <h2>✨ NOSSOS MOMENTOS ✨</h2>
+      <div class="carrossel">
+        <div class="slides">
+          <img src="foto1.jpg" alt="Momento 1" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto2.jpg" alt="Momento 2" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto3.jpg" alt="Momento 3" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto4.jpg" alt="Momento 4" onclick="abrirLightbox(this.src)" loading="lazy">
+          <img src="foto5.jpg" alt="Momento 5" onclick="abrirLightbox(this.src)" loading="lazy">
+        </div>
+        <button class="prev" onclick="mudarSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="mudarSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+      <img id="lightbox-img" src="">
+    </div>
+
+    <div class="historia">
+      <h2>💖 A NOSSA HISTÓRIA 💖</h2>
+      <div class="historia-texto">
+        <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. Maria e João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
+        <p>Os dias tornaram-se memórias, e as memórias tornaram-se sonhos partilhados. Viajaram juntos, riram, choraram, mas acima de tudo, amaram-se incondicionalmente.</p>
+        <p>Hoje, celebram mais um ano de cumplicidade, com a certeza de que o amor verdadeiro não se mede pelo tempo, mas pela intensidade de cada olhar, de cada abraço, de cada "amo-te".</p>
+      </div>
+    </div>
+
+    <div class="frase-container">
+      <div id="frase-romantica">“O amor é a poesia dos sentidos.”</div>
+    </div>
+
+    <div class="botoes">
+      <button class="botao-magico" onclick="criarChuvaAmor()"><i class="fas fa-heart"></i> CHUVA</button>
+      <button class="botao-magico" onclick="mudarFrase()"><i class="fas fa-sync-alt"></i> FRASE</button>
+      <button class="botao-magico" onclick="magiaTotal()"><i class="fas fa-wand-magic"></i> MAGIA</button>
+    </div>
+
+    <footer>
+      <p>Feito com <i class="fas fa-heart"></i> para vocês</p>
+    </footer>
+  </div>
+
+  <script>
+    // ========== CONFIGURAÇÕES ==========
+    const dataInicio = new Date('2023-02-14T00:00:00').getTime();
+    
+    const frases = [
+      "O meu amor por ti é maior que o universo.",
+      "Em cada batida, o teu nome.",
+      "Sonho contigo todas as noites.",
+      "És a razão do meu sorriso.",
+      "Amo-te mais a cada dia.",
+      "Juntos para sempre.",
+      "Obrigado por existires.",
+      "Minha alma gémea.",
+      "Contigo tudo faz sentido.",
+      "Para ti, o meu coração.",
+      "És o meu sol em dias nublados.",
+      "O teu abraço é o meu lugar favorito."
+    ];
+
+    const mensagemRomantica = "Meu amor, Maria... Desde o primeiro momento em que te vi, soube que eras a pessoa que iria mudar a minha vida para sempre. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo, cada abraço teu é o meu porto seguro. És a minha melhor amiga, minha confidente, meu amor, minha vida. Prometo amar-te hoje, amanhã e para toda a eternidade. Obrigado por existires e por fazeres de mim a pessoa mais feliz do mundo. Eu amo-te mais do que as palavras podem expressar. Para sempre teu, João 💖";
+
+    // ========== CONTADOR ==========
+    function atualizarContador() {
+      const agora = new Date().getTime();
+      const diff = agora - dataInicio;
+      
+      document.getElementById('dias').innerText = Math.floor(diff / 86400000);
+      document.getElementById('horas').innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+      document.getElementById('minutos').innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+      document.getElementById('segundos').innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    // ========== BOTÃO PRINCIPAL ==========
+    function revelarMensagem() {
+      criarChuvaAmor(50);
+      
+      const msgDiv = document.getElementById('mensagem-secreta');
+      msgDiv.style.display = 'block';
+      msgDiv.scrollIntoView({ behavior: 'smooth' });
+      
+      const el = document.getElementById('mensagem-digitada');
+      el.innerHTML = '';
+      let i = 0;
+      
+      function digitar() {
+        if (i < mensagemRomantica.length) {
+          el.innerHTML += mensagemRomantica.charAt(i);
+          i++;
+          setTimeout(digitar, 30);
+        }
+      }
+      digitar();
+    }
+
+    // ========== CARROSSEL ==========
+    let slideIndex = 0;
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slides img').length;
+
+    function mudarSlide(direcao) {
+      slideIndex += direcao;
+      if (slideIndex < 0) slideIndex = totalSlides - 1;
+      if (slideIndex >= totalSlides) slideIndex = 0;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    setInterval(() => mudarSlide(1), 6000);
+
+    // ========== LIGHTBOX ==========
+    function abrirLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function fecharLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fecharLightbox();
+    });
+
+    // ========== FRASE ROMÂNTICA ==========
+    const fraseEl = document.getElementById('frase-romantica');
+
+    function mudarFrase() {
+      fraseEl.style.opacity = 0;
+      setTimeout(() => {
+        const idx = Math.floor(Math.random() * frases.length);
+        fraseEl.innerText = `“${frases[idx]}”`;
+        fraseEl.style.opacity = 1;
+      }, 200);
+    }
+    setInterval(mudarFrase, 6000);
+
+    // ========== CHUVA DE AMOR ==========
+    function criarChuvaAmor(quantidade = 40) {
+      const emojis = ['❤️', '💖', '💘', '🌹', '🌸', '✨', '⭐', '🦋', '💫'];
+      for (let i = 0; i < quantidade; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'particula-amor';
+          el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+          el.style.left = Math.random() * 100 + '%';
+          el.style.top = '-10%';
+          el.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+          el.style.animationDuration = (Math.random() * 2 + 3) + 's';
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 4000);
+        }, i * 15);
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('button') && !e.target.closest('.btn-presente')) {
+        criarChuvaAmor(25);
+      }
+    });
+
+    // ========== MAGIA TOTAL ==========
+    function magiaTotal() {
+      criarChuvaAmor(60);
+      for (let i = 0; i < 3; i++) {
+        setTimeout(mudarFrase, i * 200);
+      }
+      document.querySelector('.contador-wrapper').style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        document.querySelector('.contador-wrapper').style.transform = 'scale(1)';
+      }, 500);
+    }
+
+    // ========== MÚSICA ==========
+    const music = document.getElementById('bg-music');
+    let musicaAtiva = false;
+
+    function toggleMusic() {
+      if (musicaAtiva) {
+        music.pause();
+      } else {
+        music.play().catch(() => {});
+      }
+      musicaAtiva = !musicaAtiva;
+      const icon = document.querySelector('#music-toggle i');
+      icon.className = musicaAtiva ? 'fas fa-pause' : 'fas fa-music';
+    }
+
+    // ========== PARTÍCULAS ==========
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 40; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 4 + 1,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          color: `rgba(255, ${150 + Math.random()*105}, 255, 0.7)`
+        });
+      }
+    }
+    initParticles();
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > width) p.speedX *= -1;
+        if (p.y < 0 || p.y > height) p.speedY *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maria ❤️ João - Amor Eterno</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ff0080, #8000ff, #00ccff, #ff00aa);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Partículas brilhantes */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Estrelas cadentes coloridas */
+    .shooting-star {
+      position: fixed;
+      top: -10px;
+      left: 100%;
+      width: 200px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ffff00, #ff00ff, #00ffff);
+      transform: rotate(45deg);
+      animation: shoot 4s linear infinite;
+      z-index: 9995;
+      opacity: 0;
+      box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff;
+    }
+
+    @keyframes shoot {
+      0% { left: 100%; top: -10%; opacity: 1; }
+      100% { left: -10%; top: 110%; opacity: 0; }
+    }
+
+    /* Container principal */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Cabeçalho */
+    header {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+
+    h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ffff00, #ff00ff, #00ffff, #ffaa00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px #ff00ff, 0 0 80px #00ffff;
+      animation: glowPulse 2s infinite alternate;
+      margin-bottom: 15px;
+      letter-spacing: 3px;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 40px #ff00ff, 0 0 80px #00ffff; }
+      to { text-shadow: 0 0 80px #ffff00, 0 0 120px #ff00ff; }
+    }
+
+    .data-inicio {
+      font-size: 1.6rem;
+      color: #ffff00;
+      text-shadow: 0 0 20px #ff00ff;
+      animation: float 4s ease-in-out infinite;
+      letter-spacing: 2px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Foto principal */
+    .foto-principal {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      margin: 30px auto;
+      object-fit: cover;
+      border: 6px solid #ffff00;
+      box-shadow: 0 0 60px #ff00ff, 0 0 120px #00ffff;
+      animation: rotatePhoto 10s infinite linear;
+      transition: transform 0.5s;
+    }
+
+    .foto-principal:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    @keyframes rotatePhoto {
+      0% { box-shadow: 0 0 60px #ff00ff; }
+      33% { box-shadow: 0 0 120px #00ffff; }
+      66% { box-shadow: 0 0 60px #ffff00; }
+      100% { box-shadow: 0 0 60px #ff00ff; }
+    }
+
+    /* Contador de tempo */
+    .contador-wrapper {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+      border-radius: 100px;
+      padding: 40px;
+      margin: 50px 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 100px #ff00ff, inset 0 0 50px #00ffff;
+    }
+
+    .contador-titulo {
+      font-size: 2.2rem;
+      color: #ffff00;
+      margin-bottom: 30px;
+      text-shadow: 0 0 30px #ff00ff;
+    }
+
+    .contador-numeros {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .bloco {
+      text-align: center;
+    }
+
+    .bloco .numero {
+      font-size: 5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #00ffff;
+      text-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff;
+    }
+
+    .bloco .legenda {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      color: #ffff00;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px #ff00ff;
+    }
+
+    /* Botão principal - Receba o Teu Presente */
+    .btn-presente {
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+      background-size: 200% 200%;
+      animation: gradientMove 3s ease infinite;
+      border: none;
+      color: white;
+      font-size: 2.8rem;
+      font-weight: 900;
+      padding: 30px 80px;
+      border-radius: 120px;
+      cursor: pointer;
+      box-shadow: 0 0 80px #ff00ff, 0 0 160px #00ffff;
+      transition: 0.5s;
+      margin: 60px 0;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      border: 3px solid rgba(255,255,255,0.5);
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .btn-presente:hover {
+      transform: scale(1.2) rotate(3deg);
+      box-shadow: 0 0 120px #ffff00, 0 0 200px #ff00ff;
+    }
+
+    /* Área da mensagem secreta */
+    .mensagem-secreta {
+      display: none;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      border-radius: 80px;
+      padding: 50px;
+      margin: 50px 0;
+      border: 3px solid #ffff00;
+      box-shadow: 0 0 100px #ff00ff;
+      animation: aparecer 1.5s ease-out;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    #mensagem-digitada {
+      font-size: 2.5rem;
+      line-height: 1.6;
+      color: #ffffff;
+      text-shadow: 0 0 30px #ffff00, 0 0 60px #ff00ff;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Galeria */
+    .galeria {
+      margin: 80px 0;
+      text-align: center;
+    }
+
+    .galeria h2 {
+      font-size: 4rem;
+      margin-bottom: 40px;
+      background: linear-gradient(45deg, #ffff00, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px #ff00ff;
+    }
+
+    .carrossel {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 50px;
+      box-shadow: 0 0 100px #ff00ff, 0 0 200px #00ffff;
+      border: 3px solid #ffff00;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    .slides img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .carrossel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      color: white;
+      border: none;
+      font-size: 3rem;
+      padding: 15px 30px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      z-index: 20;
+      border: 2px solid #ffff00;
+    }
+
+    .carrossel button:hover {
+      background: linear-gradient(45deg, #ffff00, #ff00ff);
+      transform: translateY(-50%) scale(1.2);
+      box-shadow: 0 0 60px #ffff00;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 5px solid #ffff00;
+      box-shadow: 0 0 200px #ff00ff;
+      border-radius: 30px;
+    }
+
+    /* História */
+    .historia {
+      margin: 80px 0;
+      padding: 50px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+      border-radius: 100px;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 100px #00ffff;
+    }
+
+    .historia h2 {
+      font-size: 4rem;
+      margin-bottom: 40px;
+      color: #ffff00;
+      text-shadow: 0 0 40px #ff00ff;
+    }
+
+    .historia-texto {
+      font-size: 1.8rem;
+      line-height: 2;
+      color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .historia-texto p {
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+      text-shadow: 0 0 20px #00ffff;
+    }
+
+    .historia-texto p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Frase romântica */
+    .frase-container {
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      border-radius: 120px;
+      padding: 40px;
+      margin: 60px 0;
+      text-align: center;
+      border: 3px solid #ffff00;
+      box-shadow: 0 0 100px #ffff00;
+    }
+
+    #frase-romantica {
+      font-size: 2.8rem;
+      font-style: italic;
+      color: #ffffff;
+      text-shadow: 0 0 40px #ffff00;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s;
+    }
+
+    /* Botões interativos */
+    .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin: 60px 0;
+    }
+
+    .botao-magico {
+      padding: 20px 50px;
+      border: none;
+      border-radius: 80px;
+      background: linear-gradient(45deg, #ffff00, #ff00ff);
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 60px #ffff00;
+      transition: 0.4s;
+      border: 2px solid white;
+    }
+
+    .botao-magico:hover {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 0 100px #ff00ff;
+      color: white;
+    }
+
+    /* Chuva de amor */
+    .particula-amor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: cair 5s linear forwards;
+      font-size: 3rem;
+      filter: drop-shadow(0 0 30px #ffff00);
+    }
+
+    @keyframes cair {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(1080deg); opacity: 0; }
+    }
+
+    /* Botão música */
+    #music-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      border: 3px solid #ffff00;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 80px #ff00ff;
+      z-index: 1000;
+      transition: 0.4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #music-toggle:hover {
+      transform: scale(1.3) rotate(360deg);
+      box-shadow: 0 0 150px #ffff00;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 50px 0;
+      color: #ffff00;
+      font-size: 1.6rem;
+      text-shadow: 0 0 30px #ff00ff;
+    }
+
+    footer i {
+      color: #ff00ff;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 3rem; }
+      .btn-presente { font-size: 1.8rem; padding: 20px 40px; }
+      #frase-romantica { font-size: 2rem; }
+      .slides img { height: 300px; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <audio id="bg-music" loop>
+    <source src="sound.mp4" type="audio/mp4">
+  </audio>
+
+  <button id="music-toggle" onclick="toggleMusic()">
+    <i class="fas fa-music"></i>
+  </button>
+
+  <div class="container">
+    <header>
+      <h1>Maria ❤️ João</h1>
+      <div class="data-inicio">Desde 14 de Fevereiro de 2023</div>
+      <img src="foto1.jpg" alt="Maria e João" class="foto-principal" onclick="abrirLightbox(this.src)">
+    </header>
+
+    <div class="contador-wrapper">
+      <div class="contador-titulo">💞 Tempo de Amor 💞</div>
+      <div class="contador-numeros">
+        <div class="bloco"><span class="numero" id="dias">0</span><span class="legenda">Dias</span></div>
+        <div class="bloco"><span class="numero" id="horas">0</span><span class="legenda">Horas</span></div>
+        <div class="bloco"><span class="numero" id="minutos">0</span><span class="legenda">Min</span></div>
+        <div class="bloco"><span class="numero" id="segundos">0</span><span class="legenda">Seg</span></div>
+      </div>
+    </div>
+
+    <!-- BOTÃO PRINCIPAL -->
+    <button class="btn-presente" onclick="revelarMensagem()">
+      <i class="fas fa-gift"></i> Receba o Teu Presente
+    </button>
+
+    <!-- MENSAGEM SECRETA (aparece após clique) -->
+    <div class="mensagem-secreta" id="mensagem-secreta">
+      <div id="mensagem-digitada"></div>
+    </div>
+
+    <div class="galeria">
+      <h2>✨ Nossos Momentos ✨</h2>
+      <div class="carrossel">
+        <div class="slides">
+          <img src="foto1.jpg" alt="Momento 1" onclick="abrirLightbox(this.src)">
+          <img src="foto2.jpg" alt="Momento 2" onclick="abrirLightbox(this.src)">
+          <img src="foto3.jpg" alt="Momento 3" onclick="abrirLightbox(this.src)">
+          <img src="foto4.jpg" alt="Momento 4" onclick="abrirLightbox(this.src)">
+          <img src="foto5.jpg" alt="Momento 5" onclick="abrirLightbox(this.src)">
+        </div>
+        <button class="prev" onclick="mudarSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="mudarSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+      <img id="lightbox-img" src="">
+    </div>
+
+    <div class="historia">
+      <h2>💖 A Nossa História 💖</h2>
+      <div class="historia-texto" id="historia-texto">
+        <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. Maria e João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
+        <p>Os dias tornaram-se memórias, e as memórias tornaram-se sonhos partilhados. Viajaram juntos, riram, choraram, mas acima de tudo, amaram-se incondicionalmente.</p>
+        <p>Hoje, celebram mais um ano de cumplicidade, com a certeza de que o amor verdadeiro não se mede pelo tempo, mas pela intensidade de cada olhar, de cada abraço, de cada "amo-te".</p>
+        <p>Esta página é uma pequena homenagem a essa história que ainda está a ser escrita... com muito amor e magia. 💫</p>
+      </div>
+    </div>
+
+    <div class="frase-container">
+      <div id="frase-romantica">“O amor é a poesia dos sentidos.”</div>
+    </div>
+
+    <div class="botoes">
+      <button class="botao-magico" onclick="criarChuvaAmor()"><i class="fas fa-heart"></i> Chuva de Amor</button>
+      <button class="botao-magico" onclick="mudarFrase()"><i class="fas fa-sync-alt"></i> Nova Frase</button>
+      <button class="botao-magico" onclick="magiaTotal()"><i class="fas fa-wand-magic"></i> Magia Total</button>
+    </div>
+
+    <footer>
+      <p>Feito com <i class="fas fa-heart"></i> para celebrar o vosso amor eterno</p>
+    </footer>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIGURAÇÕES
+    // ============================================
+    const dataInicio = new Date('2023-02-14T00:00:00').getTime();
+    
+    const frases = [
+      "O meu amor por ti é maior que o universo.",
+      "Em cada batida, o teu nome.",
+      "Sonho contigo todas as noites.",
+      "És a razão do meu sorriso.",
+      "Amo-te mais a cada dia que passa.",
+      "Juntos para sempre.",
+      "Obrigado por existires.",
+      "Minha alma gémea.",
+      "Contigo tudo faz sentido.",
+      "Para ti, o meu coração.",
+      "Se pudesse, escolhia-te todas as vidas.",
+      "És o meu lugar favorito.",
+      "Nos teus olhos encontro o meu lar.",
+      "Cada momento contigo é eterno."
+    ];
+
+    const mensagemRomantica = "Meu amor, Maria... Desde o primeiro momento em que te vi, soube que eras a pessoa que iria mudar a minha vida para sempre. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo, cada abraço teu é o meu porto seguro. És a minha melhor amiga, minha confidente, meu amor, minha vida. Prometo amar-te hoje, amanhã e para toda a eternidade. Obrigado por existires e por fazeres de mim a pessoa mais feliz do mundo. Eu amo-te mais do que as palavras podem expressar. Para sempre teu, João 💖";
+
+    // ============================================
+    // CONTADOR
+    // ============================================
+    function atualizarContador() {
+      const agora = new Date().getTime();
+      const diff = agora - dataInicio;
+      
+      document.getElementById('dias').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('horas').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+      document.getElementById('minutos').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+      document.getElementById('segundos').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+    }
+    setInterval(atualizarContador, 1000);
+
+    // ============================================
+    // BOTÃO PRINCIPAL - REVELAR MENSAGEM
+    // ============================================
+    function revelarMensagem() {
+      // Criar explosão
+      criarChuvaAmor();
+      
+      // Mostrar área da mensagem
+      const msgDiv = document.getElementById('mensagem-secreta');
+      msgDiv.style.display = 'block';
+      
+      // Rolar até a mensagem
+      msgDiv.scrollIntoView({ behavior: 'smooth' });
+      
+      // Efeito de digitação
+      const el = document.getElementById('mensagem-digitada');
+      el.innerHTML = '';
+      let i = 0;
+      
+      function digitar() {
+        if (i < mensagemRomantica.length) {
+          el.innerHTML += mensagemRomantica.charAt(i);
+          i++;
+          setTimeout(digitar, 50);
+        }
+      }
+      digitar();
+    }
+
+    // ============================================
+    // CARROSSEL
+    // ============================================
+    let slideIndex = 0;
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slides img').length;
+
+    function mudarSlide(direcao) {
+      slideIndex += direcao;
+      if (slideIndex < 0) slideIndex = totalSlides - 1;
+      if (slideIndex >= totalSlides) slideIndex = 0;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+    setInterval(() => mudarSlide(1), 5000);
+
+    // ============================================
+    // LIGHTBOX
+    // ============================================
+    function abrirLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function fecharLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fecharLightbox();
+    });
+
+    // ============================================
+    // HISTÓRIA SCROLL
+    // ============================================
+    const paragrafos = document.querySelectorAll('.historia-texto p');
+
+    function verificarVisibilidade() {
+      paragrafos.forEach(p => {
+        const rect = p.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          p.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', verificarVisibilidade);
+    window.addEventListener('load', verificarVisibilidade);
+
+    // ============================================
+    // FRASE ROMÂNTICA
+    // ============================================
+    const fraseEl = document.getElementById('frase-romantica');
+
+    function mudarFrase() {
+      fraseEl.style.opacity = 0;
+      setTimeout(() => {
+        const idx = Math.floor(Math.random() * frases.length);
+        fraseEl.innerText = `“${frases[idx]}”`;
+        fraseEl.style.opacity = 1;
+      }, 500);
+    }
+    setInterval(mudarFrase, 6000);
+
+    // ============================================
+    // CHUVA DE AMOR
+    // ============================================
+    function criarChuvaAmor() {
+      const emojis = ['❤️', '💖', '💘', '💕', '🌹', '🌸', '🌼', '🌺', '💐', '✨', '⭐', '💫', '🦋'];
+      for (let i = 0; i < 200; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'particula-amor';
+          el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+          el.style.left = Math.random() * 100 + '%';
+          el.style.top = '-10%';
+          el.style.fontSize = (Math.random() * 3 + 2) + 'rem';
+          el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 5000);
+        }, i * 10);
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('botao-magico') && !e.target.closest('button') && !e.target.closest('.btn-presente')) {
+        criarChuvaAmor();
+      }
+    });
+
+    // ============================================
+    // MAGIA TOTAL
+    // ============================================
+    function magiaTotal() {
+      criarChuvaAmor();
+      for (let i = 0; i < 8; i++) {
+        setTimeout(mudarFrase, i * 200);
+      }
+      document.querySelector('.contador-wrapper').style.animation = 'glowPulse 0.3s 10 alternate';
+      setTimeout(() => {
+        document.querySelector('.contador-wrapper').style.animation = '';
+      }, 3000);
+    }
+
+    // ============================================
+    // MÚSICA
+    // ============================================
+    const music = document.getElementById('bg-music');
+    let musicaAtiva = false;
+
+    function toggleMusic() {
+      if (musicaAtiva) {
+        music.pause();
+      } else {
+        music.play().catch(e => console.log("Autoplay bloqueado:", e));
+      }
+      musicaAtiva = !musicaAtiva;
+      const icon = document.querySelector('#music-toggle i');
+      icon.className = musicaAtiva ? 'fas fa-pause' : 'fas fa-music';
+    }
+
+    // ============================================
+    // PARTÍCULAS
+    // ============================================
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 150; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 4 + 1,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          color: `rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*100+155)}, ${Math.floor(Math.random()*255)}, 0.8)`
+        });
+      }
+    }
+    initParticles();
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > width) p.speedX *= -1;
+        if (p.y < 0 || p.y > height) p.speedY *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
+    });
+
+    // ============================================
+    // ESTRELAS CADENTES
+    // ============================================
+    setInterval(() => {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      star.style.top = Math.random() * 50 + '%';
+      star.style.left = 100 + '%';
+      star.style.animationDuration = 2 + Math.random() * 3 + 's';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 5000);
+    }, 2000);
+
+    // Inicialização
+    window.onload = () => {
+      atualizarContador();
+      mudarFrase();
+    };
+  </script>
+</body>
+</html>
