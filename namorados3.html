@@ -594,7 +594,7 @@
   <!-- ÁUDIO CORRIGIDO: sound.mp3 com autoplay -->
   <audio id="bg-music" loop autoplay preload="auto">
     <source src="sound.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio HTML5.
+    O seu navegador não suporta áudio HTML5.
   </audio>
 
   <button id="music-toggle" onclick="toggleMusic()">
@@ -648,7 +648,7 @@
     <div class="historia">
       <h2>💖 A NOSSA HISTÓRIA 💖</h2>
       <div class="historia-texto">
-        <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. Maria e João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
+        <p>Era uma vez, num dia especial de São Valentim, dois corações que se encontraram por acaso... ou talvez pelo destino. A Maria e o João cruzaram-se numa pequena cafeteria, e desde esse instante, nunca mais se separaram.</p>
         <p>Os dias tornaram-se memórias, e as memórias tornaram-se sonhos partilhados. Viajaram juntos, riram, choraram, mas acima de tudo, amaram-se incondicionalmente.</p>
         <p>Hoje, celebram mais um ano de cumplicidade, com a certeza de que o amor verdadeiro não se mede pelo tempo, mas pela intensidade de cada olhar, de cada abraço, de cada "amo-te".</p>
       </div>
@@ -688,7 +688,7 @@
       "O teu abraço é o meu lugar favorito."
     ];
 
-    const mensagemRomantica = "Meu amor, Maria... Desde o primeiro momento em que te vi, soube que eras a pessoa que iria mudar a minha vida para sempre. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo, cada abraço teu é o meu porto seguro. És a minha melhor amiga, minha confidente, meu amor, minha vida. Prometo amar-te hoje, amanhã e para toda a eternidade. Obrigado por existires e por fazeres de mim a pessoa mais feliz do mundo. Eu amo-te mais do que as palavras podem expressar. Para sempre teu, João 💖";
+    const mensagemRomantica = "Meu amor, Maria... Desde o primeiro momento em que te vi, soube que eras a pessoa que iria mudar a minha vida para sempre. Cada dia ao teu lado é um presente, cada sorriso teu ilumina o meu mundo, cada abraço teu é o meu porto seguro. És a minha melhor amiga, minha confidente, meu amor, minha vida. Prometo amar-te hoje, amanhã e para toda a eternidade. Obrigado por existires e por fazeres de mim a pessoa mais feliz do mundo. Amo-te mais do que as palavras podem expressar. Para sempre teu, João 💖";
 
     // ========== CONTADOR ==========
     function atualizarContador() {
@@ -764,7 +764,8 @@
         fraseEl.style.opacity = 1;
       }, 200);
     }
-    setInterval(mudarFrase, 6000);
+    // Muda a frase a cada 4 segundos
+    setInterval(mudarFrase, 4000);
 
     // ========== CHUVA DE AMOR ==========
     function criarChuvaAmor(quantidade = 40) {
@@ -784,11 +785,8 @@
       }
     }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('button') && !e.target.closest('.btn-presente')) {
-        criarChuvaAmor(25);
-      }
-    });
+    // Ativa a chuva de amor a cada 3 segundos automaticamente
+    setInterval(() => criarChuvaAmor(15), 3000);
 
     // ========== MAGIA TOTAL ==========
     function magiaTotal() {
@@ -804,7 +802,7 @@
 
     // ========== MÚSICA CORRIGIDA ==========
     const music = document.getElementById('bg-music');
-    let musicaAtiva = true; // Começa como true porque tem autoplay
+    let musicaAtiva = true;
 
     function toggleMusic() {
       if (musicaAtiva) {
@@ -829,11 +827,10 @@
       }
     }
 
-    // Verificar se o autoplay funcionou
     window.addEventListener('load', function() {
       music.play()
         .then(() => {
-          console.log("✅ Música tocando automaticamente!");
+          console.log("✅ Música a tocar automaticamente!");
           musicaAtiva = true;
           atualizarIconeMusica();
         })
@@ -842,7 +839,6 @@
           musicaAtiva = false;
           atualizarIconeMusica();
           
-          // Tenta novamente no primeiro clique
           document.body.addEventListener('click', function ativarNoClique() {
             music.play()
               .then(() => {
@@ -854,7 +850,6 @@
         });
     });
 
-    // Para debug
     music.addEventListener('canplaythrough', () => {
       console.log("✅ Áudio sound.mp3 carregado e pronto!");
     });
